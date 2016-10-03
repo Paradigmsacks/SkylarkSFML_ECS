@@ -13,13 +13,19 @@ namespace sp
 		~Game();
 
 		void initialize();
-		void mainLoop(Entity* ent);
+		void mainLoop();
+
+		//Temporary
+		std::vector<Entity> entities;
+
 	private:
 		RenderPTR mWindow;
 		sf::Event mEvent;
 		void createWindow();
 		void pollEvents();
 		void update(double delta);
-		void render(Entity* ent);
+		void render();
+
+		
 	};
 }

@@ -19,7 +19,7 @@ namespace sp
 		createWindow();
 	}
 
-	void Game::mainLoop(Entity* ent)
+	void Game::mainLoop()
 	{
 		sf::Clock mClock;
 		mClock.restart();
@@ -42,10 +42,8 @@ namespace sp
 			{
 				update(timestep);
 				accumulator -= timestep;
-
-
 			}
-			render(ent);
+			render();
 		}
 	}
 
@@ -75,15 +73,54 @@ namespace sp
 
 	void Game::update(double delta)
 	{
+		sf::Vector2f movement;
+		float speed = 200;
 
+		for (auto it = entities.begin(); it != entities.end(); it++)
+		{
+			//Update logic
+
+			movement.x = 0;
+			movement.y = 0;
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			{
+				movement.x = -1;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			{
+				movement.x = 1;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+			{
+				movement.y = -1;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			{
+				movement.y = 1;
+			}
+
+			movement.x *= speed * delta;
+			movement.y *= speed * delta;
+
+			it->getComponent<sp::SpriteComponent>()->sprite.move(movement);
+
+		}
 	}
 
-	void Game::render(Entity* ent)
+	void Game::render()
 	{
 		sf::RenderStates states;
-		states.transform.translate(100, 100);
-		sf::CircleShape shape;
-		mWindow->draw(ent->getComponent<sp::SpriteComponent>()->getSprite(), states);
+		mWindow->clear();
+
+		for (auto it = entities.begin(); it != entities.end(); it++)
+		{
+			//Render logic
+			mWindow->draw(it->getComponent<sp::SpriteComponent>()->sprite, states);
+		}
+
+
+
 		mWindow->display();
 	}
 }

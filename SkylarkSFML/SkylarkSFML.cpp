@@ -14,14 +14,16 @@ int main()
 	sf::Texture* texture = new sf::Texture();
 	texture->loadFromFile("skylark.png");
 
-	Entity* skylarEntity = new Entity();
+	Entity skylarEntity;
 
-	ComponentHandle<SpriteComponent> spriteHandle = skylarEntity->addNewComponent<SpriteComponent>();
+	ComponentHandle<SpriteComponent> spriteHandle = skylarEntity.addNewComponent<SpriteComponent>();
+
 	spriteHandle->sprite.setTexture(*texture, true);
 
 	Game* mGame = new Game();
+	mGame->entities.push_back(skylarEntity);
 	mGame->initialize();
-	mGame->mainLoop(skylarEntity);
+	mGame->mainLoop();
     return 0;
 }
 
