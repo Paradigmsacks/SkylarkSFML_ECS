@@ -10,6 +10,7 @@ namespace sp
 		virtual ~Component();
 	};
 
+	
 	template <class T>
 	class ComponentHandle
 	{
@@ -30,3 +31,4 @@ namespace sp
 		std::weak_ptr<T> mPtr;
 	};
 }
+

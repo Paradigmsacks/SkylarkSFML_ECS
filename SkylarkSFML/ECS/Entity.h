@@ -12,22 +12,30 @@ namespace sp
 		Entity();
 		~Entity();
 
-		template <class T> void addComponent(T* comp);
+		template <class T> ComponentHandle<T> addComponent(T* comp);
+		template <class T> ComponentHandle<T> addNewComponent();
 		template <class T> bool hasComponent();
 		template <class T> ComponentHandle<T> getComponent();
 		template <class T> void removeComponent();
-		virtual void initialize() {};
 	private:
 		std::multimap<size_t, Component::PTR> components;
 	};
 
 	template <class T>
-	void Entity::addComponent(T* comp)
+	ComponentHandle<T> Entity::addComponent(T* comp)
 	{
 		static_assert(std::is_base_of<Component, T>::value, "Component is not derived from Component");
 		size_t hash = typeid(T).hash_code();
 		Component::PTR mComp(comp);
 		components.insert(std::make_pair(hash, std::move(mComp)));
+		return getComponent<T>();
+	}
+
+	template <class T>
+	ComponentHandle<T> Entity::addNewComponent()
+	{
+		T* newComp = new T();
+		return addComponent<T>(newComp);
 	}
 
 	template <class T>

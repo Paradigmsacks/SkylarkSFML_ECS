@@ -3,20 +3,8 @@
 #include <SFML/Graphics.hpp>
 namespace sp
 {
-	class SpriteComponent : public Component
+	struct SpriteComponent : public Component
 	{
-	public:
-		SpriteComponent() {};
-		~SpriteComponent() {};
-		void setTexture(sf::Texture* tex)
-		{
-			mSprite.setTexture(*tex);
-		};
-		sf::Sprite& getSprite()
-		{
-			return mSprite;
-		}
-	private:
-		sf::Sprite mSprite;
+		sf::Sprite sprite;
 	};
 }

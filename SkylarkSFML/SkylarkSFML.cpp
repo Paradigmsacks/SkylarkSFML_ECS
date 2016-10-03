@@ -11,17 +11,17 @@ using namespace sp;
 int main()
 {
 
-	Entity* spr = new Entity();
-
-	spr->initialize();
 	sf::Texture* texture = new sf::Texture();
-	bool load = texture->loadFromFile("skylark.png");
-	sp::SpriteComponent* sC = new sp::SpriteComponent();
-	sC->setTexture(texture);
-	spr->addComponent(sC);
+	texture->loadFromFile("skylark.png");
+
+	Entity* skylarEntity = new Entity();
+
+	ComponentHandle<SpriteComponent> spriteHandle = skylarEntity->addNewComponent<SpriteComponent>();
+	spriteHandle->sprite.setTexture(*texture, true);
+
 	Game* mGame = new Game();
 	mGame->initialize();
-	mGame->mainLoop(spr);
+	mGame->mainLoop(skylarEntity);
     return 0;
 }
 
