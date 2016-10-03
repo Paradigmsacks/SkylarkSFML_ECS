@@ -12,6 +12,7 @@ namespace Skylark
 		void move(Vector v) {
 			mPosition.X += v.X;
 			mPosition.Y += v.Y;
+
 		};
 		void rotate(float angle) {};
 		void setPosition(Vector v) {};
