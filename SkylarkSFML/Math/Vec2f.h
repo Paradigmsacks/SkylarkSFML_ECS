@@ -1,8 +1,18 @@
 #pragma once
-class Vec2f
+#include <SFML/Graphics.hpp>
+namespace sp
 {
-public:
-	Vec2f();
-	~Vec2f();
-};
+	class Vec2f
+	{
+	public:
+		float X;
+		float Y;
+
+
+		Vec2f(sf::Vector2f& vec);
+		sf::Vector2f toSFML();
+		Vec2f();
+		~Vec2f();
+	};
+}
 
