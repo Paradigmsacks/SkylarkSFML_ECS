@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "Components\SpriteComponent.h"
-#include "Math\Vec2.h"
+#include "Math\Vec2f.h"
 
 namespace sp
 {
