@@ -1,13 +1,15 @@
 #include "stdafx.h"
 #include "Entity.h"
 
-
-Entity::Entity()
+namespace sp
 {
-}
+	Entity::Entity()
+	{
+	}
 
 
-Entity::~Entity()
-{
+	Entity::~Entity()
+	{
+	}
 }
 

@@ -2,13 +2,15 @@
 #include "Component.h"
 #include <iostream>
 
-
-Component::Component()
+namespace sp
 {
-}
+	Component::Component()
+	{
+	}
 
 
-Component::~Component()
-{
-	std::cout << "Deleted the component";
+	Component::~Component()
+	{
+		std::cout << "Deleted the component";
+	}
 }

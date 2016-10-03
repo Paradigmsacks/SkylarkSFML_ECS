@@ -53,10 +53,10 @@
     <ClCompile Include="ECS\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Types\Vec2.cpp">
+    <ClCompile Include="Math\Vec2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Types\Vec2.h">
+    <ClCompile Include="Math\Vec2.h">
       <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>

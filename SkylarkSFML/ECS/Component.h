@@ -1,30 +1,32 @@
 #pragma once
 #include <memory>
-class Component
+namespace sp
 {
-public:
-	typedef std::shared_ptr<Component> PTR;
-	Component();
-	virtual ~Component();
-};
-
-template <class T>
-class ComponentHandle
-{
-public:
-	ComponentHandle(std::shared_ptr<T>& theComponent)
+	class Component
 	{
-		mPtr = theComponent;
-	}
-	ComponentHandle()
-	{
+	public:
+		typedef std::shared_ptr<Component> PTR;
+		Component();
+		virtual ~Component();
+	};
 
-	}
-	std::shared_ptr<T> operator->()
+	template <class T>
+	class ComponentHandle
 	{
-		return mPtr.lock();
-	}
-private:
-	std::weak_ptr<T> mPtr;
-};
+	public:
+		ComponentHandle(std::shared_ptr<T>& theComponent)
+		{
+			mPtr = theComponent;
+		}
+		ComponentHandle()
+		{
 
+		}
+		std::shared_ptr<T> operator->()
+		{
+			return mPtr.lock();
+		}
+	private:
+		std::weak_ptr<T> mPtr;
+	};
+}

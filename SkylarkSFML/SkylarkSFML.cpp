@@ -7,7 +7,7 @@
 #include <iostream>
 #include <memory>
 #include "Components/SpriteComponent.h"
-
+using namespace sp;
 int main()
 {
 
@@ -16,7 +16,7 @@ int main()
 	spr->initialize();
 	sf::Texture* texture = new sf::Texture();
 	bool load = texture->loadFromFile("skylark.png");
-	Skylark::SpriteComponent* sC = new Skylark::SpriteComponent();
+	sp::SpriteComponent* sC = new sp::SpriteComponent();
 	sC->setTexture(texture);
 	spr->addComponent(sC);
 	Game* mGame = new Game();
