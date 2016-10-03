@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Components\SpriteComponent.h"
 #include "Math\Vec2f.h"
+#include "Components\TransformComponent.h"
 
 namespace sp
 {
@@ -73,49 +74,71 @@ namespace sp
 
 	void Game::update(double delta)
 	{
-		sf::Vector2f movement;
-		float speed = 200;
+		Vec2f movement;
+		float speed = 400;
 
 		for (auto it = entities.begin(); it != entities.end(); it++)
 		{
 			//Update logic
 
-			movement.x = 0;
-			movement.y = 0;
+			movement.X = 0;
+			movement.Y = 0;
+			float angleAdd = 0;
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			{
-				movement.x = -1;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			{
-				movement.x = 1;
-			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 			{
-				movement.y = -1;
+				movement.Y = -1;
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 			{
-				movement.y = 1;
+				movement.Y = 1;
 			}
 
-			movement.x *= speed * delta;
-			movement.y *= speed * delta;
+			movement.X *= speed * delta;
+			movement.Y *= speed * delta;
 
-			it->getComponent<sp::SpriteComponent>()->sprite.move(movement);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			{
+				angleAdd = -1;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			{
+				angleAdd = 1;
+			}
+
+			angleAdd *= delta * 180;
+			
+
+			ComponentHandle<TransformComponent> trans = it->getComponent<TransformComponent>();
+			trans->angle += angleAdd;
+
+			sf::Vector2f tempVec = movement.toSFML();
+			sf::Transform tempTrans;
+			tempTrans.rotate(trans->angle);
+			tempVec = tempTrans.transformPoint(tempVec);
+			sp::Vec2f newVec(tempVec);
+
+			trans->position.X += newVec.X;
+			trans->position.Y += newVec.Y;
 
 		}
 	}
 
 	void Game::render()
 	{
-		sf::RenderStates states;
 		mWindow->clear();
 
 		for (auto it = entities.begin(); it != entities.end(); it++)
 		{
 			//Render logic
+			sf::RenderStates states;
+
+			Vec2f entityPos = it->getComponent<sp::TransformComponent>()->position;
+			float angle = it->getComponent<sp::TransformComponent>()->angle;
+
+			states.transform.translate(entityPos.X, entityPos.Y);
+			states.transform.rotate(angle);
+
 			mWindow->draw(it->getComponent<sp::SpriteComponent>()->sprite, states);
 		}
 

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <memory>
 #include "Components/SpriteComponent.h"
+#include "Components/TransformComponent.h"
 using namespace sp;
 int main()
 {
@@ -17,8 +18,12 @@ int main()
 	Entity skylarEntity;
 
 	ComponentHandle<SpriteComponent> spriteHandle = skylarEntity.addNewComponent<SpriteComponent>();
+	skylarEntity.addNewComponent<TransformComponent>();
 
 	spriteHandle->sprite.setTexture(*texture, true);
+	sf::Vector2u si = spriteHandle->sprite.getTexture()->getSize();
+
+	spriteHandle->sprite.setOrigin(si.x / 2, si.y / 2);
 
 	Game* mGame = new Game();
 	mGame->entities.push_back(skylarEntity);

@@ -39,6 +39,9 @@
     <ClInclude Include="Math\Vec2f.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Components\TransformComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
