@@ -53,14 +53,11 @@
     <ClCompile Include="ECS\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Types\Vector.h">
+    <ClCompile Include="Types\Vec2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Types\Vector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\TransformComponent.h">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Types\Vec2.h">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

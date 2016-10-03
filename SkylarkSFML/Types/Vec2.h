@@ -1,17 +1,17 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#include <SFML\Graphics.hpp>
 namespace Skylark
 {
-	class Vector
+	class Vec2
 	{
 	public:
 		float X;
 		float Y;
 
 		//Constructors
-		Vector();
-		Vector(sf::Vector2f& vec);
-		Vector(float x, float y);
+		Vec2();
+		Vec2(sf::Vector2f& vec);
+		Vec2(float x, float y);
 
 		//Conversions
 		sf::Vector2f toSF();

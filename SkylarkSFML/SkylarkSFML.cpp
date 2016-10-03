@@ -7,7 +7,6 @@
 #include <iostream>
 #include <memory>
 #include "Components/SpriteComponent.h"
-#include "Components/TransformComponent.h"
 
 int main()
 {
@@ -18,10 +17,8 @@ int main()
 	sf::Texture* texture = new sf::Texture();
 	bool load = texture->loadFromFile("skylark.png");
 	Skylark::SpriteComponent* sC = new Skylark::SpriteComponent();
-	Skylark::TransformComponent* tC = new Skylark::TransformComponent();
 	sC->setTexture(texture);
 	spr->addComponent(sC);
-	spr->addComponent(tC);
 	Game* mGame = new Game();
 	mGame->initialize();
 	mGame->mainLoop(spr);

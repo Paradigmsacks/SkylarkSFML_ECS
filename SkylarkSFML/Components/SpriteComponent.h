@@ -1,5 +1,4 @@
 #pragma once
-#include "stdafx.h"
 #include "../ECS/Component.h"
 #include <SFML/Graphics.hpp>
 namespace Skylark

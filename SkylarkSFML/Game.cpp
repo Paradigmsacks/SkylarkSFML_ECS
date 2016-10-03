@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "Components\SpriteComponent.h"
-#include "Components\TransformComponent.h"
-#include "Types\Vector.h"
+#include "Types\Vec2.h"
 
 
 Game::Game()
@@ -43,7 +42,6 @@ void Game::mainLoop(Entity* ent)
 			update(timestep);
 			accumulator -= timestep;
 
-			ent->getComponent<Skylark::TransformComponent>()->move(Skylark::Vector(10.0*timestep, 0.0));
 
 		}
 		render(ent);
@@ -52,7 +50,7 @@ void Game::mainLoop(Entity* ent)
 
 void Game::createWindow()
 {
-	mWindow.reset(new sf::RenderWindow(sf::VideoMode(1600, 900), "SKYLARK", sf::Style::Titlebar));
+	mWindow.reset(new sf::RenderWindow(sf::VideoMode(1600, 900), "SKYLARK", sf::Style::Default));
 
 }
 
@@ -65,7 +63,11 @@ void Game::pollEvents()
 			if (mEvent.key.code == sf::Keyboard::Escape)
 			{
 				mWindow->close();
-			}
+			}		
+		}
+		if (mEvent.type == sf::Event::Closed)
+		{
+			mWindow->close();
 		}
 	}
 }

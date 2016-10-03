@@ -50,8 +50,6 @@ ComponentHandle<T> Entity::getComponent()
 	{
 		return ComponentHandle<T>();
 	}
-	std::cout << "number of references: " << it->second.use_count() << std::endl;
-
 	auto p = std::dynamic_pointer_cast<T>(it->second);
 	return ComponentHandle<T>(p);
 }
